@@ -1,0 +1,97 @@
+[200~#include <iostream>
+#include "console.h"
+#include <string>
+#include <map.h>
+#include <math.h>
+
+using namespace std;
+
+class Punto{
+    public:
+    Punto(float _x, float _y){
+       x = _x;
+       y = _y;
+    }
+        int cuadrante(){
+            int aux = 0;
+            if(x > 0 && y > 0){
+                 aux = 1;
+            }
+            if(x < 0 && y > 0){
+                 aux = 2;
+            }
+            if(x < 0 && y < 0){
+                 aux = 3;
+            }
+            if(x > 0 && y < 0){
+                 aux = 4;
+            }
+            return aux;
+        }
+        float getX(){
+            return x;
+        }
+        float getY(){
+            return y;
+        }
+        float  theta(){
+
+            float  aux1 = 0;
+            float  aux2 = 0;
+            aux1 = y/x;
+            aux2 = asin(aux1);
+            if(x == 0 && y == 0){
+                 aux2 = 0;
+            }
+            return aux2;
+        }
+        string toString(){
+            string _x,_y;
+            float AUX1;
+            float AUX2;
+            AUX1 = x;
+            AUX2 = y;
+            _x = to_string(AUX1);
+            _y = to_string(AUX2);
+            return "(" + _x + "," + _y + ")";
+        }
+
+    private:
+        float x;
+        float y;
+
+
+};
+
+float euclidiana(Punto a, Punto b)
+{
+    float aux1 = b.getX() - a.getX();
+    float aux2 = b.getY() - a.getY();
+    return sqrtf(aux1*aux1 + aux2*aux2);
+}
+
+int main() {
+    Punto punto1(2,4);
+    cout<<punto1.toString()<<endl;
+    cout<<punto1.theta()<<endl;
+    cout<<"cuadrante :"<<punto1.cuadrante()<<endl;
+    Punto punto2(0,0);
+    cout<<punto2.toString()<<endl;
+    cout<<punto2.theta()<<endl;
+    cout<<"cuadrante :"<<punto1.cuadrante()<<endl;
+    Punto punto3(-2,2);
+    cout<<punto3.toString()<<endl;
+    cout<<punto3.theta()<<endl;
+    cout<<"cuadrante :"<<punto3.cuadrante()<<endl;
+    Punto punto4(4,-5);
+    cout<<punto4.toString()<<endl;
+    cout<<punto4.theta()<<endl;
+    cout<<"cuadrante :"<<punto4.cuadrante()<<endl;
+    Punto punto5(-5,-5);
+    cout<<punto5.toString()<<endl;
+    cout<<punto5.theta()<<endl;
+    cout<<"cuadrante :"<<punto5.cuadrante()<<endl;
+    cout<<"euclidiana :"<<euclidiana(punto1,punto2);
+return 0;
+}
+
